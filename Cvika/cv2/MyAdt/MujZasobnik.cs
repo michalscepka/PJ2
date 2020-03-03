@@ -4,14 +4,14 @@ using System.Text;
 
 namespace MyAdt
 {
-	public class MujZasobnik : IZasobnik
+	public class MujZasobnik<T> : IZasobnik<T>
 	{
-		int[] data;
-		int index;
+		private T[] data;
+		private int index;
 
 		public MujZasobnik(int length)
 		{
-			data = new int[length];
+			data = new T[length];
 			index = 0;
 		}
 
@@ -30,21 +30,21 @@ namespace MyAdt
 			return data.Length == index;
 		}
 
-		public int Pop()
+		public T Pop()
 		{
 			if (IsEmpty())
 				throw new ApplicationException("Stack is empty");
 			return data[--index];
 		}
 
-		public void Push(int x)
+		public void Push(T x)
 		{
 			if (IsFull())
 				throw new ApplicationException("Stack is full");
 			data[index++] = x;
 		}
 
-		public int Top()
+		public T Top()
 		{
 			if (IsEmpty())
 				throw new ApplicationException("Stack is empty");

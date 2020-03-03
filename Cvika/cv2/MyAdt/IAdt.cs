@@ -2,23 +2,23 @@
 
 namespace MyAdt
 {
-	public interface IAdt
+	public interface IAdt<T>
 	{
 		bool IsEmpty();
 		bool IsFull();
 		void Clear();
 	}
 
-	public interface IFronta : IAdt
+	public interface IFronta<T> : IAdt<T>
 	{
-		void Add(int x);
-		int Get();
+		void Add(T x);
+		T Get();
 	}
 
-	public interface IZasobnik : IAdt
+	public interface IZasobnik<T> : IAdt<T>
 	{
-		void Push(int x);
-		int Pop();
-		int Top();
+		void Push(T x);
+		T Pop();
+		T Top();
 	}
 }

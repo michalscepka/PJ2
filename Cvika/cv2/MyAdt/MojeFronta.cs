@@ -4,20 +4,20 @@ using System.Text;
 
 namespace MyAdt
 {
-	public class MojeFronta : IFronta
+	public class MojeFronta<T> : IFronta<T>
 	{
-		int[] data;
-		int index;
-		int length;
+		private T[] data;
+		private int index;
+		private int length;
 
 		public MojeFronta(int length)
 		{
-			data = new int[length];
+			data = new T[length];
 			index = 0;
 			this.length = 0;
 		}
 
-		public void Add(int x)
+		public void Add(T x)
 		{
 			if(IsFull())
 				throw new ApplicationException("Queue is full");
@@ -31,11 +31,11 @@ namespace MyAdt
 			length = 0;
 		}
 
-		public int Get()
+		public T Get()
 		{
 			if (IsEmpty())
 				throw new ApplicationException("Queue is empty");
-			int tmp = data[index];
+			T tmp = data[index];
 			index = (index + 1) % data.Length;
 			length--;
 			return tmp;
