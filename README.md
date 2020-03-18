@@ -1,2 +1,2 @@
 # PJ2
-.NET
+Programming Languages II (.NET) - VŠB
