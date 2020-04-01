@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<processors>
+    <processor>
+        <id>1</id>
+        <name>Intel Core i7-9700K</name>
+        <price>10890</price>
+        <cores>8</cores>
+        <frequency>3,6</frequency>
+        <architecture>Coffee Lake refresh</architecture>
+        <overclock>true</overclock>
+    </processor>
+    <processor>
+        <id></id>
+        <name>Intel Core i9-9900K</name>
+        <price>15390</price>
+        <cores>8</cores>
+        <frequency>3,6</frequency>
+        <architecture>Coffee Lake refresh</architecture>
+        <overclock>true</overclock>
+    </processor>
+    <processor>
+        <id>3</id>
+        <name>Intel Core i5-9400F</name>
+        <price>4099</price>
+        <cores>6</cores>
+        <frequency>2,9</frequency>
+        <architecture>Coffee Lake refresh</architecture>
+        <overclock>false</overclock>
+    </processor>
+    <processor>
+        <id>4</id>
+        <name>AMD RYZEN 7 3800X</name>
+        <price>9890</price>
+        <cores>8</cores>
+        <frequency>3,9</frequency>
+        <architecture>Zen 2</architecture>
+        <overclock>true</overclock>
+    </processor>
+    <processor>
+        <id>5</id>
+        <name>AMD RYZEN 9 3950X</name>
+        <price>20990</price>
+        <cores>16</cores>
+        <frequency>3,5</frequency>
+        <architecture>Zen 2</architecture>
+        <overclock>true</overclock>
+    </processor>
+</processors>
