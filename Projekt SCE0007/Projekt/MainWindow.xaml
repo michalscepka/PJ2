@@ -7,10 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="793*"/>
-			<ColumnDefinition Width="7*"/>
-		</Grid.ColumnDefinitions>
 		<Button x:Name="button_add" Content="Add" HorizontalAlignment="Left" Margin="406,41,0,0" VerticalAlignment="Top" Width="50" Click="Add_Click"/>
 		<Button x:Name="button_edit" Content="Edit" HorizontalAlignment="Left" Margin="503,41,0,0" VerticalAlignment="Top" Width="50" Click="Edit_Click"/>
 		<Button x:Name="button_remove" Content="Remove" HorizontalAlignment="Left" Margin="558,41,0,0" VerticalAlignment="Top" Width="50" Click="Remove_Click"/>
@@ -37,8 +33,10 @@
 		<CheckBox x:Name="overclock_chb" Content="Overclock" HorizontalAlignment="Left" Margin="329,42,0,0" VerticalAlignment="Top"/>
 		<TextBox x:Name="id_tb" HorizontalAlignment="Left" Margin="463,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Height="20"/>
 		<Label Content="Insert data for Add/Edit (Name, Price, Cores, Frequency, Architecture)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-		<Button x:Name="button_save" Content="Save" HorizontalAlignment="Left" Margin="722,40,0,0" VerticalAlignment="Top" Width="50" Click="Save_Click"/>
+		<Button x:Name="button_save" Content="Save" HorizontalAlignment="Left" Margin="722,41,0,0" VerticalAlignment="Top" Width="50" Click="Save_Click"/>
 		<Label x:Name="info_label" Content="info_label" HorizontalAlignment="Left" Margin="585,71,0,0" VerticalAlignment="Top"/>
+		<Button x:Name="btn_sort_by_name" Content="Sort by name" HorizontalAlignment="Left" Margin="503,10,0,0" VerticalAlignment="Top" Click="Sort_by_name_Click"/>
+		<Button x:Name="btn_sort_by_price" Content="Sort by price" HorizontalAlignment="Left" Margin="585,10,0,0" VerticalAlignment="Top" Click="Sort_by_price_Click"/>
 
 	</Grid>
 </Window>

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,7 +14,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml;
 
 namespace Projekt
@@ -23,7 +24,7 @@ namespace Projekt
 	public partial class MainWindow : Window
 	{
 		private MyCollection array = new MyCollection();
-		private string path = @"C:\Users\Michal\Dropbox\School\4. semestr\PJ2\Projekt\Projekt\data.xml";
+		private readonly string path = @"C:\Users\Michal\Dropbox\School\4. semestr\PJ2\Projekt\Projekt\data.xml";
 
 		public MainWindow()
 		{
@@ -152,7 +153,6 @@ namespace Projekt
 		private void PrintData()
 		{
 			ClearLabels();
-			array.OrderByPrice();
 			foreach (Processor cpu in array)
 			{
 				id_label.Content += cpu.Id.ToString() + "\n";
@@ -212,6 +212,18 @@ namespace Projekt
 			freq_label.Content = string.Empty;
 			arch_label.Content = string.Empty;
 			overclock_label.Content = string.Empty;
+		}
+
+		private void Sort_by_name_Click(object sender, RoutedEventArgs e)
+		{
+			array.OrderByName();
+			PrintData();
+		}
+
+		private void Sort_by_price_Click(object sender, RoutedEventArgs e)
+		{
+			array.OrderByPrice();
+			PrintData();
 		}
 	}
 }
