@@ -82,25 +82,14 @@ namespace Projekt
 
 		public void OrderByName()
 		{
-			IEnumerable<Processor> query = data.OrderBy(cpu => cpu.Name);
-			data = query.ToArray();
+			IEnumerable<Processor> sorted = data.OrderBy(cpu => cpu.Name);
+			data = sorted.ToArray();
 		}
 
 		public void OrderByPrice()
 		{
-			IEnumerable<Processor> query = data.OrderBy(cpu => cpu.Price);
-			data = query.ToArray();
-		}
-
-		public void OrderByCores()
-		{
-			IEnumerable<Processor> query = data.OrderBy(cpu => cpu.Cores);
-			data = query.ToArray();
-		}
-
-		public int GetLength()
-		{
-			return data.Length;
+			IEnumerable<Processor> sorted = data.OrderBy(cpu => cpu.Price);
+			data = sorted.ToArray();
 		}
 
 		public IEnumerator GetEnumerator()
@@ -112,9 +101,7 @@ namespace Projekt
 		public void Print()
 		{
 			foreach (Processor item in data)
-			{
 				Console.WriteLine(item);
-			}
 			Console.WriteLine();
 		}
 	}

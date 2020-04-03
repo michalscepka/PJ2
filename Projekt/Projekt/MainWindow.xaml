@@ -33,11 +33,12 @@
 		<TextBox x:Name="cores_tb" HorizontalAlignment="Left" Margin="164,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"/>
 		<TextBox x:Name="freq_tb" HorizontalAlignment="Left" Margin="199,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="30"/>
 		<TextBox x:Name="arch_tb" HorizontalAlignment="Left" Margin="234,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="90"/>
-		<Button x:Name="button_remove_Copy" Content="Load" HorizontalAlignment="Left" Margin="667,41,0,0" VerticalAlignment="Top" Width="50" Click="Load_Click"/>
+		<Button x:Name="button_load" Content="Load" HorizontalAlignment="Left" Margin="667,41,0,0" VerticalAlignment="Top" Width="50" Click="Load_Click"/>
 		<CheckBox x:Name="overclock_chb" Content="Overclock" HorizontalAlignment="Left" Margin="329,42,0,0" VerticalAlignment="Top"/>
 		<TextBox x:Name="id_tb" HorizontalAlignment="Left" Margin="463,41,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="34" Height="20"/>
-		<Label Content="Data for Add/Edit: Name, Price, Cores, Frequency, Architecture" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
-		<Button x:Name="button_remove_Copy1" Content="Save" HorizontalAlignment="Left" Margin="722,40,0,0" VerticalAlignment="Top" Width="50" Click="Load_Click"/>
+		<Label Content="Insert data for Add/Edit (Name, Price, Cores, Frequency, Architecture)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+		<Button x:Name="button_save" Content="Save" HorizontalAlignment="Left" Margin="722,40,0,0" VerticalAlignment="Top" Width="50" Click="Save_Click"/>
+		<Label x:Name="info_label" Content="info_label" HorizontalAlignment="Left" Margin="585,71,0,0" VerticalAlignment="Top"/>
 
 	</Grid>
 </Window>

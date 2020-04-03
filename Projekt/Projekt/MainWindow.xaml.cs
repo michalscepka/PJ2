@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,19 +22,19 @@ namespace Projekt
 	/// </summary>
 	public partial class MainWindow : Window
 	{
-		MyCollection array = new MyCollection();
+		private MyCollection array = new MyCollection();
+		private string path = @"C:\Users\Michal\Dropbox\School\4. semestr\PJ2\Projekt\Projekt\data.xml";
 
 		public MainWindow()
 		{
 			InitializeComponent();
 			ClearLabels();
+			id_label.Content = string.Empty;
 		}
 
 		private void Load_Click(object sender, RoutedEventArgs e)
 		{
 			array = new MyCollection();
-
-			string path = @"C:\Users\Michal\Dropbox\School\4. semestr\PJ2\Projekt\Projekt\data.xml";
 
 			XmlReader reader = XmlReader.Create(path);
 
@@ -52,13 +53,13 @@ namespace Projekt
 							cpu.Name = reader.ReadElementContentAsString();
 							break;
 						case "price":
-							cpu.Price = Convert.ToDouble(reader.ReadElementContentAsString());
+							cpu.Price = ParseDouble(reader.ReadElementContentAsString());
 							break;
 						case "cores":
-							cpu.Cores = Convert.ToInt32(reader.ReadElementContentAsString());
+							cpu.Cores = ParseInt(reader.ReadElementContentAsString());
 							break;
 						case "frequency":
-							cpu.Frequency = Convert.ToDouble(reader.ReadElementContentAsString());
+							cpu.Frequency = ParseDouble(reader.ReadElementContentAsString());
 							break;
 						case "architecture":
 							cpu.Architecture = reader.ReadElementContentAsString();
@@ -78,15 +79,17 @@ namespace Projekt
 
 		private void Add_Click(object sender, RoutedEventArgs e)
 		{
-			Processor new_cpu = new Processor();
+			info_label.Content = string.Empty;
 
-			//TODO prepsat na metodu + osetrit prazdny input
-			new_cpu.Name = name_tb.Text;
-			new_cpu.Price = Convert.ToDouble(price_tb.Text);
-			new_cpu.Cores = Convert.ToInt32(cores_tb.Text);
-			new_cpu.Frequency = Convert.ToDouble(freq_tb.Text);
-			new_cpu.Architecture = arch_tb.Text;
-			new_cpu.Overclock = Convert.ToBoolean(overclock_chb.IsChecked);
+			Processor new_cpu = new Processor
+			{
+				Name = name_tb.Text,
+				Price = ParseDouble(price_tb.Text),
+				Cores = ParseInt(cores_tb.Text),
+				Frequency = ParseDouble(freq_tb.Text),
+				Architecture = arch_tb.Text,
+				Overclock = Convert.ToBoolean(overclock_chb.IsChecked)
+			};
 
 			array.Add(new_cpu);
 			PrintData();
@@ -94,12 +97,14 @@ namespace Projekt
 
 		private void Edit_Click(object sender, RoutedEventArgs e)
 		{
-			int index = array.IndexOf(Convert.ToInt32(id_tb.Text));
+			info_label.Content = string.Empty;
+
+			int index = array.IndexOf(ParseInt(id_tb.Text));
 
 			array[index].Name = name_tb.Text;
-			array[index].Price = Convert.ToDouble(price_tb.Text);
-			array[index].Cores = Convert.ToInt32(cores_tb.Text);
-			array[index].Frequency = Convert.ToDouble(freq_tb.Text);
+			array[index].Price = ParseDouble(price_tb.Text);
+			array[index].Cores = ParseInt(cores_tb.Text);
+			array[index].Frequency = ParseDouble(freq_tb.Text);
 			array[index].Architecture = arch_tb.Text;
 			array[index].Overclock = Convert.ToBoolean(overclock_chb.IsChecked);
 
@@ -108,13 +113,46 @@ namespace Projekt
 
 		private void Remove_Click(object sender, RoutedEventArgs e)
 		{
-			array.RemoveById(Convert.ToInt32(id_tb.Text));
+			array.RemoveById(ParseInt(id_tb.Text));
 			PrintData();
+		}
+
+		private void Save_Click(object sender, RoutedEventArgs e)
+		{
+			XmlWriterSettings settings = new XmlWriterSettings
+			{
+				Indent = true
+			};
+
+			XmlWriter writer = XmlWriter.Create(path, settings);
+
+			writer.WriteStartDocument();
+
+			writer.WriteStartElement("processors");
+			foreach(Processor cpu in array)
+			{
+				writer.WriteStartElement("processor");
+				writer.WriteElementString("id", cpu.Id.ToString());
+				writer.WriteElementString("name", cpu.Name);
+				writer.WriteElementString("price", cpu.Price.ToString());
+				writer.WriteElementString("cores", cpu.Cores.ToString());
+				writer.WriteElementString("frequency", cpu.Frequency.ToString());
+				writer.WriteElementString("architecture", cpu.Architecture);
+				writer.WriteElementString("overclock", cpu.Overclock.ToString());
+				writer.WriteEndElement();
+			}
+			writer.WriteEndElement();
+			writer.WriteEndDocument();
+			writer.Flush();
+			writer.Close();
+
+			info_label.Content = "Saved to file";
 		}
 
 		private void PrintData()
 		{
 			ClearLabels();
+			array.OrderByPrice();
 			foreach (Processor cpu in array)
 			{
 				id_label.Content += cpu.Id.ToString() + "\n";
@@ -127,14 +165,45 @@ namespace Projekt
 			}
 		}
 
-		public int? ToNullableInt(string s)
+		private int? ToNullableInt(string s)
 		{
-			if (int.TryParse(s, out int number))
+			if (Int32.TryParse(s, out int number))
 				return number;
 			return null;
 		}
 
-		public void ClearLabels()
+		private int ParseInt(string s)
+		{
+			bool success = Int32.TryParse(s, out int number);
+			if (success)
+			{
+				return number;
+			}
+			else
+			{
+				info_label.Content += "-Bad integer input\n";
+				return -1;
+			}
+		}
+
+		private double ParseDouble(string s)
+		{
+			NumberStyles style = NumberStyles.AllowDecimalPoint;
+			CultureInfo culture = CultureInfo.CreateSpecificCulture("cs-CZ");
+
+			bool success = Double.TryParse(s, style, culture, out double number);
+			if (success)
+			{
+				return number;
+			}
+			else
+			{
+				info_label.Content += "-Bad double input (CultureInfo cs-CZ)\n";
+				return -1;
+			}
+		}
+
+		private void ClearLabels()
 		{
 			id_label.Content = string.Empty;
 			names_label.Content = string.Empty;
