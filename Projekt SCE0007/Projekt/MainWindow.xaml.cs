@@ -24,7 +24,7 @@ namespace Projekt
 	public partial class MainWindow : Window
 	{
 		private MyCollection array = new MyCollection();
-		private readonly string path = @"C:\Users\Michal\Dropbox\School\4. semestr\PJ2\Projekt\Projekt\data.xml";
+		private readonly string path = @"..\..\..\data.xml";
 
 		public MainWindow()
 		{
