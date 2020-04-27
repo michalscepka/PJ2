@@ -13,6 +13,8 @@ namespace cv6.Comparers
 			if(x % 2 == y % 2)
 			{
 				//podle velikosti...
+				// zaporny vysledek = x mensi nez y
+				// kladny = y vetsi nez x
 				return x - y;
 			}
 
