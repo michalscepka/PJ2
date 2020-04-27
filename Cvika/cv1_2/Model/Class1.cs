@@ -1,5 +1,4 @@
-﻿using System;
-using System.Text;
+﻿using System.Text;
 
 namespace Model
 {
@@ -16,7 +15,11 @@ namespace Model
 				names[i] = char.ToUpper(names[i][0]) + names[i].Substring(1);
 			}
 
-			return "Ahoj " + string.Join(" ", names);
+			StringBuilder sb = new StringBuilder();
+			foreach (string item in names)
+				sb.Append("Ahoj " + item + "\n");
+
+			return sb.ToString();
 		}
 	}
 }
