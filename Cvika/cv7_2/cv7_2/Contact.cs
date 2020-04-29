@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace cv7_2
+﻿namespace cv7_2
 {
 	public class Contact
 	{
